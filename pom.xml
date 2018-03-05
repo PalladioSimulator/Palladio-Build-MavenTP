@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.palladiosimulator</groupId>
+	<artifactId>target-platform-base</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+
+	<name>Palladio Maven Tycho Target Platform</name>
+	<description>A shared target platform for Tycho builds of Palladio.</description>
+	<url>http://www.palladiosimulator.org</url>
+	<packaging>pom</packaging>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Stephan Seifermann</name>
+			<email>seifermann@fzi.de</email>
+			<organization>FZI Research Center for Information Technology</organization>
+			<organizationUrl>http://www.fzi.de</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/palladiosimulator/palladio-build-maventp.git</connection>
+		<developerConnection>scm:git:ssh://github.com/palladiosimulator/palladio-build-maventp.git</developerConnection>
+		<url>http://github.com/palladiosimulator/palladio-build-maventp/tree/master</url>
+	</scm>
+
+	<profiles>
+
+		<!-- Build configuration of parent POM itself -->
+		<profile>
+			<id>local-build</id>
+			<activation>
+				<file>
+					<exists>localBuild12465</exists>
+				</file>
+			</activation>
+
+			<distributionManagement>
+				<snapshotRepository>
+					<id>ossrh</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+				</snapshotRepository>
+				<repository>
+					<id>ossrh</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+			</distributionManagement>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<version>1.3</version>
+						<executions>
+							<execution>
+								<id>attach-artifacts</id>
+								<phase>package</phase>
+								<goals>
+									<goal>attach-artifact</goal>
+								</goals>
+								<configuration>
+									<artifacts>
+										<artifact>
+											<file>oxygen.target</file>
+											<type>target</type>
+											<classifier>oxygen</classifier>
+										</artifact>
+									</artifacts>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+
+</project>
