@@ -76,6 +76,21 @@
 											<type>target</type>
 											<classifier>oxygen</classifier>
 										</artifact>
+										<artifact>
+											<file>oxygen-mirror.target</file>
+											<type>target</type>
+											<classifier>oxygen-mirror</classifier>
+										</artifact>
+										<artifact>
+											<file>photon.target</file>
+											<type>target</type>
+											<classifier>photon</classifier>
+										</artifact>
+										<artifact>
+											<file>photon-mirror.target</file>
+											<type>target</type>
+											<classifier>photon-mirror</classifier>
+										</artifact>
 									</artifacts>
 								</configuration>
 							</execution>
