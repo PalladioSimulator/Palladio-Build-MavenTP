@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?><target name="Palladio License Feature" sequenceNumber="10">
+<locations>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.palladiosimulator.branding.feature.feature.group" version="1.0.0"/>
+<unit id="org.palladiosimulator.license.feature.group" version="1.0.0"/>
+<unit id="org.palladiosimulator.branding.feature.source.feature.group" version="1.0.0"/>
+<unit id="org.palladiosimulator.license.source.feature.group" version="1.0.0"/>
+<repository location="https://sdqweb.ipd.kit.edu/eclipse/palladio/supporting/branding/releases/1.0.0/"/>
+</location>
+</locations>
+</target>

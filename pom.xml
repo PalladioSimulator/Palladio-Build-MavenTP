@@ -76,6 +76,16 @@
 											<type>target</type>
 											<classifier>oxygen</classifier>
 										</artifact>
+										<artifact>
+											<file>license-1.target</file>
+											<type>target</type>
+											<classifier>license-1</classifier>
+										</artifact>
+										<artifact>
+											<file>license-2.target</file>
+											<type>target</type>
+											<classifier>license-2</classifier>
+										</artifact>
 									</artifacts>
 								</configuration>
 							</execution>
