@@ -38,13 +38,8 @@
 
 		<!-- Build configuration of parent POM itself -->
 		<profile>
-			<id>local-build</id>
-			<activation>
-				<file>
-					<exists>localBuild12465</exists>
-				</file>
-			</activation>
-
+			<id>local-build-deployable</id>
+			<!-- activate this profile explicitly by adding -Plocal-build-deployable to the maven command -->
 			<distributionManagement>
 				<snapshotRepository>
 					<id>ossrh</id>
@@ -55,7 +50,33 @@
 					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 				</repository>
 			</distributionManagement>
-
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<id>local-build</id>
+			<activation>
+				<file>
+					<missing>.maven_disable_local-build</missing>
+				</file>
+			</activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -72,31 +93,12 @@
 								<configuration>
 									<artifacts>
 										<artifact>
-											<file>license-1.target</file>
+											<file>license.target</file>
 											<type>target</type>
-											<classifier>license-1</classifier>
-										</artifact>
-										<artifact>
-											<file>license-2.target</file>
-											<type>target</type>
-											<classifier>license-2</classifier>
+											<classifier>license</classifier>
 										</artifact>
 									</artifacts>
 								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.6</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
 							</execution>
 						</executions>
 					</plugin>
